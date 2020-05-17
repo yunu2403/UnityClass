@@ -9,28 +9,22 @@ public class Manager : MonoBehaviour
 {
 
     public static HairGeneration currentHairGeneration;
+    public Button button;
 
-    public void OnClickMakeHair()
+    private LayerMask _layerMaskRoot;
+    
+
+    public void OnClickMakeRoot()
     {
-        HairGeneration.MakeAllHair();
-
-    }
-
-    public void OnClickMoveHair()
-    {
-        if (currentHairGeneration != null)
+        if (Input.GetMouseButtonDown(0))
         {
-            currentHairGeneration.SetLastHairMoveable(true);
-        }
-    }
+            RaycastHit _raycastHit;
 
-    public void OnClickStopHair()
-    {
-        //HairGeneration.SetAllLastHairMoveable(false);
-        if (currentHairGeneration != null)
-        {
-            currentHairGeneration.SetLastHairMoveable(false);
-        }
+            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out _raycastHit,_layerMaskRoot))
+            {
+                _raycastHit.collider.GetComponentInParent<HairGeneration>().SelectItem();
+            }
+        }        
     }
 
     public void OnClickNextItem()
@@ -44,6 +38,30 @@ public class Manager : MonoBehaviour
         }
 
         HairGeneration.SelectItem(HairGeneration._List[index]);
+    }
+
+    public void OnClickMakeHair()
+    {
+        if (currentHairGeneration != null)
+        {
+            currentHairGeneration.MakeHair();
+        }
+    }
+
+    public void OnClickMoveHair()
+    {
+        if (currentHairGeneration != null)
+        {
+            currentHairGeneration.SetLastHairMoveable(true);
+        }
+    }
+
+    public void OnClickStopHair()
+    {
+        if (currentHairGeneration != null)
+        {
+            currentHairGeneration.SetLastHairMoveable(false);
+        }
     }
 }
 

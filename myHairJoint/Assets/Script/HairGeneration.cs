@@ -13,28 +13,22 @@ public class HairGeneration : MonoBehaviour
     public GameObject hairPrefab;
     public int hairCount = 5;
     public float hairSize = 1;
+
     [HideInInspector]
     public Hair lastHair;
     public Renderer targetRender;
+    private bool isMade = false;
+
 
     public static void SelectItem(HairGeneration target)
     {
-        if(Manager.currentHairGeneration !=null)
+        if (Manager.currentHairGeneration != null)
         {
             Manager.currentHairGeneration.targetRender.material.color = Color.white;
         }
 
         Manager.currentHairGeneration = target;
         Manager.currentHairGeneration.targetRender.material.color = Color.red;
-    }
-
-    public static void MakeAllHair()
-    {
-        foreach(var hair in _List)
-        {
-            
-            hair.MakeHair();
-        }
     }
 
     public static void SetAllLastHairMoveable(bool isKinematic)
@@ -59,30 +53,36 @@ public class HairGeneration : MonoBehaviour
         SelectItem(this);
     }
 
-    void MakeHair()
+    public void MakeHair()
     {
+        if (isMade == true)
+            return;
+
         Vector3 currentPos = hairRoot.transform.position;
         Rigidbody _rigidbody = GetComponentInChildren<Rigidbody>();
         var parent = new GameObject("hairGroup");
-
-        for(int i=0; i<hairCount; i++)
+        for (int i = 0; i < hairCount; i++)
         {
             var hair = Instantiate(hairPrefab);
             hair.transform.position = currentPos;
             hair.transform.SetParent(parent.transform);
-            hair.transform.localScale = new Vector3(1, 1, hairSize);
+            hair.transform.localRotation = parent.transform.localRotation;
+            hair.transform.localScale = new Vector3(1, 1, hairSize); /*new Vector3(0.5f, 1, hairSize);*/
             var script = hair.GetComponent<Hair>();
             script.SetRigidBody(_rigidbody);
             currentPos += Vector3.forward * hairSize;
             _rigidbody = script.GetComponentInChildren<Rigidbody>();
 
-            if(i==hairCount-1)
+            if (i == hairCount - 1)
             {
                 _LastHairList.Add(script);
                 lastHair = script;
             }
         }
+
+        isMade = true;
     }
+
 }
 
 

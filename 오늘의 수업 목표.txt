@@ -1,0 +1,9 @@
+
+
+	(1) 마우스 가운데 버튼 클릭 드레그 시, (혹은 (Left)Alt+오른쪽마우스버튼 클릭 시)  오브젝트 상하좌우 이동
+
+
+	(2) (Left)Alt+왼쪽마우스버튼 클릭 시, 선택된 헤어 삭제
+		public void DeleteHair()
+
+	(3) Hair Generation 컴포넌트 변수를 'UI' InputField에 값을 넣어 수정 가능.

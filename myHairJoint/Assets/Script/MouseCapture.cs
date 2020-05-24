@@ -100,19 +100,19 @@ public class MouseCapture : MonoBehaviour
 
         if (Input.GetKey(KeyCode.W))
         {
-            selectArea.transform.Rotate(Vector3.right);
+            selectArea.transform.Rotate(Vector3.right/6f);
         }
         if (Input.GetKey(KeyCode.S))
         {
-            selectArea.transform.Rotate(Vector3.left);
+            selectArea.transform.Rotate(Vector3.left/6f);
         }
         if (Input.GetKey(KeyCode.A))
         {
-            selectArea.transform.Rotate(Vector3.up);
+            selectArea.transform.Rotate(Vector3.up/6f);
         }
         if (Input.GetKey(KeyCode.D))
         {
-            selectArea.transform.Rotate(Vector3.down);
+            selectArea.transform.Rotate(Vector3.down/6f);
         }
 
         #endregion

@@ -1,12 +1,10 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
-    - Body
-    - CamerTransition
     - Hair
     - HairGeneration
     - Manager
-    - Starter
+    - MouseCapture
     Unity.2D.Tilemap.Editor.dll:
     - UnityEditor.Tilemaps.GridPaintingState
     - UnityEditor.Tilemaps.GridPaletteBrushes
@@ -74,23 +72,19 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11418}
     - Class: 114
-      Script: {instanceID: 11752}
+      Script: {instanceID: 11588}
     - Class: 114
-      Script: {instanceID: 11894}
+      Script: {instanceID: 11756}
     - Class: 114
-      Script: {instanceID: 11964}
+      Script: {instanceID: 11898}
     - Class: 114
-      Script: {instanceID: 12386}
+      Script: {instanceID: 11968}
     - Class: 114
-      Script: {instanceID: 12632}
+      Script: {instanceID: 12390}
     - Class: 114
-      Script: {instanceID: 12954}
+      Script: {instanceID: 12956}
     - Class: 114
-      Script: {instanceID: 12998}
-    - Class: 114
-      Script: {instanceID: 13222}
-    - Class: 114
-      Script: {instanceID: 13318}
+      Script: {instanceID: 13000}
     - Class: 114
       Script: {instanceID: 13404}
     - Class: 115
@@ -252,6 +246,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.EventSystems
     className: PhysicsRaycaster
+  - hash:
+      serializedVersion: 2
+      Hash: 50bf766ba8293390724139fd70cd98f5
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: MouseCapture
   - hash:
       serializedVersion: 2
       Hash: bd3cf68c8964d3c66d1c43f4f98508c9
@@ -452,12 +452,6 @@ ScriptsOnlyBuild:
     className: SignalReceiver
   - hash:
       serializedVersion: 2
-      Hash: f59fdc817e406b706708b25f77fe20a5
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: Body
-  - hash:
-      serializedVersion: 2
       Hash: 5ad4aa237d47ac2bab17bacb672edf7a
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -536,7 +530,7 @@ ScriptsOnlyBuild:
     className: BeforeAfterTestCommandState
   - hash:
       serializedVersion: 2
-      Hash: 3c1cf9fc2439dce85767bf08a0a40a28
+      Hash: 7dc6b2a22440f57a1c33cd039413527b
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: HairGeneration
@@ -572,12 +566,6 @@ ScriptsOnlyBuild:
     className: NetworkAnimator
   - hash:
       serializedVersion: 2
-      Hash: d217603aba4730b491d65eda1e728273
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: CamerTransition
-  - hash:
-      serializedVersion: 2
       Hash: 21d73eda81c18eacd2c91ad5dfaf2e32
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
@@ -600,12 +588,6 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.EventSystems
     className: BaseInput
-  - hash:
-      serializedVersion: 2
-      Hash: 505976ea42e1144e411e594e7762a9e2
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: Starter
   - hash:
       serializedVersion: 2
       Hash: 9b895dcabbc1faf095c000c32d471fd0
@@ -693,4 +675,4 @@ ScriptsOnlyBuild:
   platform: 19
   scenePathNames:
   - Assets/Scenes/SampleScene.unity
-  playerPath: C:/yunu/myHairJoint.exe
+  playerPath: D:/IMSI/myHairJoint.exe

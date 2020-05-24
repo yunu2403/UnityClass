@@ -25,6 +25,9 @@ public class Manager : MonoBehaviour
         obj.transform.rotation = MouseCapture.Instance.selectArea.transform.rotation;
         MouseCapture.Instance.selectArea.SetActive(false);
 
+        var script = obj.GetComponentInChildren<HairStartCube>();
+        script.SyncPosition();
+
         HairGeneration.SelectItem(obj.GetComponent<HairGeneration>());
     }
 

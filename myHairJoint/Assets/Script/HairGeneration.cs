@@ -23,8 +23,8 @@ public class HairGeneration : MonoBehaviour
     {
         if (Manager.currentHairGeneration != null)
         {
-            if(Manager.currentHairGeneration.isMade == true)
-                Manager.currentHairGeneration.targetRender.material.color = new Color(1,1,1,0);
+            if (Manager.currentHairGeneration.isMade == true)
+                Manager.currentHairGeneration.targetRender.material.color = new Color(1, 1, 1, 0);
             else
                 Manager.currentHairGeneration.targetRender.material.color = Color.white;
         }
@@ -66,7 +66,7 @@ public class HairGeneration : MonoBehaviour
         {
             var hair = Instantiate(hairPrefab, transform);
             hair.transform.localPosition = Vector3.zero;
-            hair.transform.localScale = new Vector3(hair.transform.localScale.x /transform.localScale.x, hair.transform.localScale.y / transform.localScale.y, 1 / transform.localScale.z * hairSize); /*new Vector3(0.5f, 1, hairSize);*/
+            hair.transform.localScale = new Vector3(hair.transform.localScale.x / transform.localScale.x, hair.transform.localScale.y / transform.localScale.y, 1 / transform.localScale.z * hairSize); /*new Vector3(0.5f, 1, hairSize);*/
             var script = hair.GetComponent<Hair>();
 
             if (i == 0)
@@ -89,6 +89,20 @@ public class HairGeneration : MonoBehaviour
         }
 
         isMade = true;
+    }
+
+    public void DeleteHair()    //(Left)Alt+왼쪽마우스버튼 클릭 시, 선택된 헤어 삭제
+    {
+        if (Input.GetKeyDown(KeyCode.LeftAlt) && Input.GetMouseButtonDown(0))
+        {
+            Ray delRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit delHit;
+            bool didHit = Physics.Raycast(delRay, out delHit, 500.0f);
+            if (didHit)
+            {
+                Destroy(delHit.collider.gameObject);
+            }
+        }
     }
 
 }

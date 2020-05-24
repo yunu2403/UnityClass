@@ -23,7 +23,7 @@ public class MouseCapture : MonoBehaviour
     public GameObject hairGenrationPrefab;
 
     private Vector2 mouseStartPosRotation;
-   
+
     public bool HandleMiddleClick = false;
     public string OnMiddleClickName = "OnMiddleClick";
     public LayerMask layerMask;
@@ -38,29 +38,39 @@ public class MouseCapture : MonoBehaviour
         bool clickedGmObjAcquired = false;
 
 
-        #region 카메라 회전 이동
-        //if (Input.GetMouseButtonDown(1))
-        //{
-        //    mouseStartPosRotation = Input.mousePosition;
-        //}
+        #region 카메라 회전 이동 및 줌 인/아웃
+        if (Input.GetMouseButtonDown(1))
+        {
+            mouseStartPosRotation = Input.mousePosition;
+        }
 
-        //if (Input.GetMouseButton(1)) // 드레그
-        //{
-        //    Vector2 delta = (Vector2)Input.mousePosition - mouseStartPosRotation;
-        //    if (delta != Vector2.zero)
-        //    {
-        //        delta = new Vector2(-delta.y, delta.x);
-        //        mainCam.transform.Rotate(delta / 25f);
-        //        mainCam.transform.rotation = Quaternion.Euler(mainCam.transform.rotation.eulerAngles.x, mainCam.transform.rotation.eulerAngles.y, 0);
-        //    }
-        //    mouseStartPosRotation = Input.mousePosition;
-        //}
+        if (Input.GetMouseButton(1)) // 드레그
+        {
+            Vector2 delta = (Vector2)Input.mousePosition - mouseStartPosRotation;
+            if (delta != Vector2.zero)
+            {
+                delta = new Vector2(-delta.y, delta.x);
+                mainCam.transform.Rotate(delta / 25f);
+                mainCam.transform.rotation = Quaternion.Euler(mainCam.transform.rotation.eulerAngles.x, mainCam.transform.rotation.eulerAngles.y, 0);
+            }
+            mouseStartPosRotation = Input.mousePosition;
+        }
+
+        if (Input.mouseScrollDelta != Vector2.zero) /// 줌 인/아웃
+        {
+
+            Ray ray = mainCam.ScreenPointToRay(Input.mousePosition);
+
+            mainCam.transform.position += ray.direction * Input.mouseScrollDelta.y * 10;
+
+        }
 
         #endregion
 
 
+        #region 마우스 클릭 시 HairRoot 생성과 이동 및 생성 방향으로 로테이션
 
-        if (Input.GetMouseButton(0)) /// 마우스 클릭 시 생성
+        if (Input.GetMouseButton(0)) /// 마우스 클릭 시 HairRoot 생성과 이동
         {
 
             if (UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
@@ -105,21 +115,17 @@ public class MouseCapture : MonoBehaviour
             selectArea.transform.Rotate(Vector3.down);
         }
 
+        #endregion
 
-        if (Input.mouseScrollDelta != Vector2.zero) /// 줌 인/아웃
-        {
 
-            Ray ray = mainCam.ScreenPointToRay(Input.mousePosition);
 
-            mainCam.transform.position += ray.direction * Input.mouseScrollDelta.y * 10;
+        //////////마우스 가운데 버튼 클릭 드래그 시, 오브젝트 상하좌우 이동
 
-        }
-
-        //////////Move Object MouseButtonDown(2)
+        #region 마우스 가운데 버튼 클릭 드래그 시, 오브젝트 상하좌우 이동
 
         if (HandleMiddleClick && Input.GetMouseButtonDown(2))
         {
-            if(!clickedGmObjAcquired)
+            if (!clickedGmObjAcquired)
             {
                 clickedGameObject = GetClickedGameObject();
                 clickedGmObjAcquired = true;
@@ -127,6 +133,7 @@ public class MouseCapture : MonoBehaviour
             if (clickedGameObject != null)
                 clickedGameObject.SendMessage(OnMiddleClickName, null, SendMessageOptions.DontRequireReceiver);
         }
+
 
         GameObject GetClickedGameObject()
         {
@@ -138,6 +145,8 @@ public class MouseCapture : MonoBehaviour
             else
                 return null;
         }
+
+        #endregion
 
     }
 

@@ -10,7 +10,7 @@ public class Manager : MonoBehaviour
 
     public static HairGeneration currentHairGeneration;
     public Button button;
-    
+
 
     private LayerMask _layerMaskRoot;
 
@@ -64,7 +64,15 @@ public class Manager : MonoBehaviour
         {
             currentHairGeneration.SetLastHairMoveable(false);
         }
-    }  
+    }
+
+    public void OnClickDeleteHair()
+    {
+        if (currentHairGeneration != null)
+        {
+            currentHairGeneration.DeleteHair();
+        }
+    }
 
 
 }

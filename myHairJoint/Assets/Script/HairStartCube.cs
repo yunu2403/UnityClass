@@ -12,7 +12,6 @@ public class HairStartCube : MonoBehaviour
     {
         isSync = true;
         offset = (transform.position - ModelScript.Model.transform.position);
-        Debug.Log(offset);
     }
 
     private void Update()

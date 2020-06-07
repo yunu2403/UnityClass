@@ -1,6 +1,6 @@
 
 
-	(1) 마우스 가운데 버튼 클릭 드레그 시, (혹은 (Left)Alt+오른쪽마우스버튼 클릭 시)  오브젝트 상하좌우 이동
+	(1) 마우스  가운데 버튼 클릭 드레그 시, (혹은 (Left)Alt+오른쪽마우스버튼 클릭 시)  오브젝트 상하좌우 이동
 		if (HandleMiddleClick && Input.GetMouseButtonDown(2))	 
 
 
